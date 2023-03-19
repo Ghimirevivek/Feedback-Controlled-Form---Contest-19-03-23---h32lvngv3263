@@ -5,24 +5,24 @@ const App = () => {
   const [rating, setRating] = useState(5)
   const [comment, setComment] = useState()
   const [commentError, setCommentError] = useState()
-  const handleCommentChange = (event) => {
-    setComment(event.target.value)
-    if (event.target.value.length.trim() < 5) {
-      setCommentError('Comment must be at least 5 characters')
+  const handleRating = (e) => {
+    setRating(e.target.value)
+  }
+  const handleComment = (e) => {
+    setComment(e.target.value)
+    if (comment.length < 5) {
+      setCommentError('Comment must be atleast 5 characters.')
     } else {
       setCommentError('')
     }
   }
-  const handleSubmit = (event) => {
-    event.preventDefault()
-  }
-  const handleRatingChange = (event) => {
-    setRating(event.target.value)
-    document.querySelector('.rating').innerText = event.target.value
-  }
   return (
     <div id="main">
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+        }}
+      >
         <div>
           <label htmlFor="rating">Rating: </label>
           <input
@@ -31,17 +31,13 @@ const App = () => {
             max="10"
             id="rating"
             value={rating}
-            onChange={handleRatingChange}
+            onChange={handleRating}
           />
           <span className="rating">{rating}</span>
         </div>
         <div>
           <label htmlFor="comment">Comment: </label>
-          <textarea
-            id="comment"
-            value={comment}
-            onChange={handleCommentChange}
-          />
+          <textarea id="comment" onChange={handleComment} value={comment} />
           <p style={{ color: 'red' }} className="comment-error">
             {commentError}
           </p>
