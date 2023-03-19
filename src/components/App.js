@@ -7,7 +7,7 @@ const App = () => {
   const [commentError, setCommentError] = useState()
   const handleCommentChange = (event) => {
     setComment(event.target.value)
-    if (event.target.value.length < 5) {
+    if (event.target.value.length.trim() < 5) {
       setCommentError('Comment must be at least 5 characters')
     } else {
       setCommentError('')
