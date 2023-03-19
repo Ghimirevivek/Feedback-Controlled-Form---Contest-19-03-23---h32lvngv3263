@@ -37,7 +37,7 @@ const App = () => {
         </div>
         <div>
           <label htmlFor="comment">Comment: </label>
-          <textarea id="comment" onChange={handleComment} value={comment} />
+          <textarea id="comment" value={comment} onChange={handleComment} />
           <p style={{ color: 'red' }} className="comment-error">
             {commentError}
           </p>
