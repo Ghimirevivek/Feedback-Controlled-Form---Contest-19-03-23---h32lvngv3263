@@ -3,31 +3,26 @@ import '../styles/App.css'
 
 const App = () => {
   const [rating, setRating] = useState(5)
-  const [comment, setComment] = useState('')
-  const [commentError, setCommentError] = useState('')
-
-  const handleRatingChange = (event) => {
-    setRating(event.target.value)
+  const [comment, setComment] = useState()
+  const [commentError, setCommentError] = useState()
+  const handleRating = (e) => {
+    setRating(e.target.value)
   }
-
-  const handleCommentChange = (event) => {
-    setComment(event.target.value)
-    if (event.target.value.length < 5) {
-      setCommentError('Comment must be at least 5 characters.')
+  const handleComment = (e) => {
+    setComment(e.target.value)
+    if (e.target.value.trim().length < 5) {
+      setCommentError('Comment must be atleast 5 characters.')
     } else {
       setCommentError('')
     }
   }
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log('Rating:', rating)
-    console.log('Comment:', comment)
-  }
-
   return (
     <div id="main">
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+        }}
+      >
         <div>
           <label htmlFor="rating">Rating: </label>
           <input
@@ -36,22 +31,16 @@ const App = () => {
             max="10"
             id="rating"
             value={rating}
-            onChange={handleRatingChange}
+            onChange={handleRating}
           />
           <span className="rating">{rating}</span>
         </div>
         <div>
           <label htmlFor="comment">Comment: </label>
-          <textarea
-            id="comment"
-            value={comment}
-            onChange={handleCommentChange}
-          />
-          {commentError && (
-            <p style={{ color: 'red' }} className="comment-error">
-              {commentError}
-            </p>
-          )}
+          <textarea id="comment" onChange={handleComment} value={comment} />
+          <p style={{ color: 'red' }} className="comment-error">
+            {commentError}
+          </p>
         </div>
         <button type="submit">Submit</button>
       </form>
@@ -60,4 +49,3 @@ const App = () => {
 }
 
 export default App
-
