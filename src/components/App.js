@@ -15,11 +15,6 @@ const App = () => {
   }
   const handleSubmit = (event) => {
     event.preventDefault()
-    if (comment.length < 5) {
-      setCommentError('Comment must be at least 5 characters.')
-    } else {
-      alert(`Rating: ${rating}\nComment: ${comment}`)
-    }
   }
   const handleRatingChange = (event) => {
     setRating(event.target.value)
